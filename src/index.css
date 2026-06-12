@@ -1,0 +1,109 @@
+@import "tailwindcss";
+
+@keyframes bgFlow {
+  0% {
+    transform: scale(1) rotate(0deg);
+  }
+
+  50% {
+    transform: scale(1.06) rotate(4deg);
+  }
+
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+@keyframes ropeMain {
+  0% {
+    transform: rotate(16deg) translateX(0px) translateY(0px);
+  }
+
+  50% {
+    transform: rotate(19deg) translateX(-35px) translateY(-18px);
+  }
+
+  100% {
+    transform: rotate(16deg) translateX(0px) translateY(0px);
+  }
+}
+
+@keyframes ropeGloss {
+  0% {
+    opacity: 0.75;
+    transform: rotate(16deg) translateY(0px);
+  }
+
+  50% {
+    opacity: 1;
+    transform: rotate(18deg) translateY(-12px);
+  }
+
+  100% {
+    opacity: 0.75;
+    transform: rotate(16deg) translateY(0px);
+  }
+}
+
+@keyframes ringFlow {
+  0% {
+    transform: rotate(0deg) translateY(0px);
+  }
+
+  50% {
+    transform: rotate(5deg) translateY(-18px);
+  }
+
+  100% {
+    transform: rotate(0deg) translateY(0px);
+  }
+}
+
+@keyframes pulseGlow {
+  0% {
+    opacity: 0.4;
+  }
+
+  50% {
+    opacity: 0.85;
+  }
+
+  100% {
+    opacity: 0.4;
+  }
+}
+
+.animate-bg-flow {
+  animation: bgFlow 8s ease-in-out infinite;
+}
+
+.animate-rope-main {
+  animation: ropeMain 6s ease-in-out infinite;
+}
+
+.animate-rope-gloss {
+  animation: ropeGloss 5s ease-in-out infinite;
+}
+
+.animate-ring-flow {
+  animation: ringFlow 8s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 4.5s ease-in-out infinite;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-25%);
+  }
+}
+
+.animate-marquee {
+  width: max-content;
+  animation: marquee 30s linear infinite;
+}
