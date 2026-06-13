@@ -1,5 +1,5 @@
 import React from 'react'
-import FeaturedExamples from '../components/ui/featuredExamples'
+import FeaturedExamples from "../components/ui/FeaturedExamples";
 
 const Examples = () => {
   return (
