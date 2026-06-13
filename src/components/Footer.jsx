@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { ArrowRight, Zap } from "lucide-react";
 import Analytics from "../pages/Featurespages/Analytics";
+import { href } from "react-router-dom";
 
 
 const GitHubIcon = () => (
@@ -73,48 +74,70 @@ const footerColumns = [
     desc: "Track traffic and performance.",
     href: "/featurespages/Analytics"
   },
-      { label: "Automation", desc: "Automate workflows instantly." },
-      { label: "Monitoring", desc: "Real-time logs and alerts." },
-      { label: "Security", desc: "Enterprise-grade protection." },
-      { label: "Collaboration", desc: "Work together with teams." },
-      { label: "API", desc: "Developer-first API access." },
+      { label: "Automation", desc: "Automate workflows instantly.",
+        href:"/featurespages/Automation"
+       },
+      { label: "Monitoring", desc: "Real-time logs and alerts.",
+        href:"/featurespages/Monitoring"
+       },
+      { label: "Security", desc: "Enterprise-grade protection.",
+        href:"/featurespages/Security"
+       },
+      { label: "Collaboration", desc: "Work together with teams." ,
+        href:"/featurespages/Collaboration"
+      },
+      { label: "API", desc: "Developer-first API access.",
+        href:"/featurespages/API"
+       },
     ],
   },
   {
     title: "Resources",
     links: [
-      { label: "Documentation", desc: "Learn the platform quickly." },
-      { label: "Guides", desc: "Step-by-step tutorials." },
-      { label: "Help Center", desc: "Support and troubleshooting." },
-      { label: "Blog", desc: "News and product updates." },
-      { label: "Templates", desc: "Ready-to-use starter kits." },
-      { label: "Community", desc: "Connect with other developers." },
+      { label: "Documentation", desc: "Learn the platform quickly.",
+        href:"/resourcespages/Documentation"
+       },
+      { label: "Guides", desc: "Step-by-step tutorials."
+        ,href:"/resourcespages/guides"
+       },
+      { label: "Help Center", desc: "Support and troubleshooting.",
+        href:"/resourcespages/HelpCenter"
+       },
+      { label: "Blog", desc: "News and product updates." ,
+        href:"/resourcespages/Blog"
+      },
+      { label: "Templates", desc: "Ready-to-use starter kits." ,
+        href:"/resourcespages/Templates"
+      },
+      { label: "Community", desc: "Connect with other developers." ,
+        href:"/resourcespages/Community"
+      },
     ],
   },
   {
     title: "Company",
     links: [
-      { label: "Pricing" },
-      { label: "Contact Us" },
-      { label: "Careers" },
-      { label: "About" },
-      { label: "Customers" },
-      { label: "Changelog" },
-      { label: "Roadmap" },
-      { label: "Partners" },
+      { label: "Pricing" , href:"/Pricing" },
+      { label: "Contact Us" ,href:"/Contact" },
+      { label: "Careers" ,href:"/" },
+      { label: "About" , href:"/" },
+      { label: "Customers" ,href:"/Contact"},
+      { label: "Changelog" ,href:"/ChangelogPage" },
+      { label: "Roadmap" , href:"/" },
+      { label: "Partners" , href:"/" },
     ],
   },
   {
     title: "Developers",
     links: [
-      { label: "API Reference" },
-      { label: "SDKs" },
-      { label: "Status" },
-      { label: "Integrations" },
-      { label: "Webhooks" },
+      { label: "API Reference", href:"/ApiReference2"},
+      { label: "SDKs", href:"/SDKs" },
+      { label: "Status" , href:"/Help/StatusPage" },
+      { label: "Integrations" , href:"/guides2"},
+      { label: "Webhooks" , href:"/Webhooks" },
       { label: "Open Source" },
-      { label: "GitHub" },
-      { label: "System Health" },
+      { label: "GitHub" , href:"/GithubPage" },
+      { label: "System Health" , href:"/Help/StatusPage"},
     ],
   },
 ];

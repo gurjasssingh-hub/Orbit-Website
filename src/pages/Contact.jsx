@@ -1,11 +1,35 @@
 import React from 'react'
 import { NavLink, Link, useLocation } from "react-router-dom";
+import { useState } from 'react';
 
 
 const Contact = () => {
+   const [formData, setFormData] = useState({
+    fullName: "",
+    workEmail: "",
+    companyName: "",
+    teamSize: "1-10",
+    inquiryType: "Sales Inquiry",
+    message: "",
+  });
+
+  const handleInputChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    console.log("Form submitted:", formData);
+  };
+
   return (
     <>
-     <div className='px-32 py-20 bg-[#f7f9fc]'>
+   
+   <div className="bg-[#f7f9fc] py-12 md:py-16 lg:py-20 px-4 sm:px-6 md:px-8 lg:px-16 xl:px-24 2xl:px-32">
 
 <section className="relative overflow-hidden py-20 lg:py-32 border-b border-gray-100">
         {/* Background Effects */}
@@ -299,9 +323,11 @@ const Contact = () => {
 
               </div>
             </div>
+            
 
           </div>
         </div>
+
       </section>
 
 <section className="relative overflow-hidden bg-neutral-50 py-20 sm:py-32">
