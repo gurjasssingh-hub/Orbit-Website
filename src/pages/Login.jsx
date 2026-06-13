@@ -1,26 +1,87 @@
 import React, { useState } from "react";
+import { supabase } from "../supabase";
+import { Toaster, toast } from "sonner";
 import {
   Mail,
   Lock,
   Eye,
   EyeOff,
   ArrowRight,
+  Loader2,
 } from "lucide-react";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  
+  // Form States
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Connect backend API authentication routes here:
-    console.log({ email, password, rememberMe });
+
+    // 1. Core Front-end Validation Checks
+    if (!email.trim() || !password) {
+      toast.error("Please fill in both email and password fields.");
+      return;
+    }
+
+    setIsLoading(true);
+
+    try {
+      // 2. Real Supabase Authentication Call
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email: email.trim(),
+        password: password,
+      });
+
+      if (error) throw error;
+
+      // 3. Native "Remember Me" implementation layout hook
+      if (rememberMe) {
+        localStorage.setItem("orbit_remembered_email", email.trim());
+      } else {
+        localStorage.removeItem("orbit_remembered_email");
+      }
+
+      // 4. Alert Success Status
+      toast.success("Welcome back! Redirecting to workspace...");
+
+      // 5. Short Timeout to let toast finish playing, then redirect back home
+      setTimeout(() => {
+        window.location.href = "/"; // For raw React router structures. Swap with useNavigate() if using react-router-dom
+      }, 1500);
+
+    } catch (error) {
+      // Gracefully catch standard auth errors (e.g. Wrong credentials)
+      toast.error(error.message || "Invalid login credentials. Please try again.");
+      console.error("Authentication error:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  // Optional: Handle OAuth Providers (Google)
+  const handleGoogleLogin = async () => {
+    try {
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: "google",
+        options: {
+          redirectTo: window.location.origin,
+        },
+      });
+      if (error) throw error;
+    } catch (error) {
+      toast.error(error.message || "Failed to initialize Google authentication.");
+    }
   };
 
   return (
     <section className="relative min-h-screen overflow-hidden bg-[#fafafa] px-6 select-none flex items-center justify-center">
+      {/* Sonner Container Wrapper */}
+      <Toaster position="top-center" richColors />
 
       {/* Background Ambient Glow */}
       <div className="absolute inset-0 pointer-events-none z-0">
@@ -88,7 +149,9 @@ const Login = () => {
             {/* Social Authentication Access Button */}
             <button 
               type="button"
-              className="mt-8 w-full h-12 rounded-xl border border-neutral-200 bg-white text-sm font-semibold text-neutral-700 shadow-sm hover:bg-neutral-50 hover:text-black transition active:scale-[0.98]"
+              onClick={handleGoogleLogin}
+              disabled={isLoading}
+              className="mt-8 w-full h-12 rounded-xl border border-neutral-200 bg-white text-sm font-semibold text-neutral-700 shadow-sm hover:bg-neutral-50 hover:text-black transition active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed"
             >
               Continue with Google
             </button>
@@ -103,7 +166,7 @@ const Login = () => {
               </span>
             </div>
 
-            {/* Core Authentication Interaction Fields Form */}
+            {/* Core Authentication Form */}
             <form onSubmit={handleSubmit} className="space-y-4">
               
               {/* Email Entry Section */}
@@ -117,10 +180,11 @@ const Login = () => {
                     id="email"
                     type="email"
                     required
+                    disabled={isLoading}
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="you@example.com"
-                    className="w-full h-12 rounded-xl border border-neutral-200 bg-white/50 pl-11 pr-4 outline-none text-sm text-neutral-900 focus:border-black focus:bg-white transition shadow-sm"
+                    className="w-full h-12 rounded-xl border border-neutral-200 bg-white/50 pl-11 pr-4 outline-none text-sm text-neutral-900 focus:border-black focus:bg-white transition shadow-sm disabled:opacity-60"
                   />
                 </div>
               </div>
@@ -136,15 +200,17 @@ const Login = () => {
                     id="password"
                     type={showPassword ? "text" : "password"}
                     required
+                    disabled={isLoading}
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="••••••••"
-                    className="w-full h-12 rounded-xl border border-neutral-200 bg-white/50 pl-11 pr-11 outline-none text-sm text-neutral-900 focus:border-black focus:bg-white transition shadow-sm"
+                    className="w-full h-12 rounded-xl border border-neutral-200 bg-white/50 pl-11 pr-11 outline-none text-sm text-neutral-900 focus:border-black focus:bg-white transition shadow-sm disabled:opacity-60"
                   />
                   <button
                     type="button"
+                    disabled={isLoading}
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-400 hover:text-neutral-600 transition"
+                    className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-400 hover:text-neutral-600 transition disabled:opacity-50"
                   >
                     {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                   </button>
@@ -153,9 +219,10 @@ const Login = () => {
 
               {/* Remember State / Recovery Links */}
               <div className="flex items-center justify-between pt-1">
-                <label className="flex items-center gap-2 text-sm font-medium text-neutral-600 cursor-pointer">
+                <label className="flex items-center gap-2 text-sm font-medium text-neutral-600 cursor-pointer select-none">
                   <input 
                     type="checkbox" 
+                    disabled={isLoading}
                     checked={rememberMe}
                     onChange={(e) => setRememberMe(e.target.checked)}
                     className="h-4 w-4 rounded border-neutral-300 accent-black text-white focus:ring-0 cursor-pointer"
@@ -170,20 +237,31 @@ const Login = () => {
                 </button>
               </div>
 
-              {/* Submit Dispatch Action Process trigger button */}
+              {/* Submit Button Trigger */}
               <button
                 type="submit"
-                className="group w-full h-12 mt-2 rounded-xl bg-black text-white font-semibold text-sm flex items-center justify-center gap-2 hover:bg-neutral-800 transition shadow-md active:scale-[0.99]"
+                disabled={isLoading}
+                className="group w-full h-12 mt-2 rounded-xl bg-black text-white font-semibold text-sm flex items-center justify-center gap-2 hover:bg-neutral-800 transition shadow-md active:scale-[0.99] disabled:bg-neutral-400 disabled:cursor-not-allowed"
               >
-                <span>Sign In</span>
-                <ArrowRight size={16} className="group-hover:translate-x-0.5 transition" />
+                {isLoading ? (
+                  <Loader2 size={18} className="animate-spin" />
+                ) : (
+                  <>
+                    <span>Sign In</span>
+                    <ArrowRight size={16} className="group-hover:translate-x-0.5 transition" />
+                  </>
+                )}
               </button>
             </form>
 
             {/* Bottom Card Footer Navigation Link Container */}
             <div className="mt-6 text-center text-sm text-neutral-500 font-medium">
               Don't have an account?
-              <button type="button" className="ml-1.5 font-bold text-neutral-900 hover:underline">
+              <button 
+                type="button" 
+                onClick={() => window.location.href = "/signup"} // Modify based on your router pathing
+                className="ml-1.5 font-bold text-neutral-900 hover:underline"
+              >
                 Create Account
               </button>
             </div>
