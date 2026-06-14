@@ -14,9 +14,9 @@ const Button1 = ({
         inline-flex items-center justify-center
 
         px-4 sm:px-5
-        py-2.5 sm:py-3
+        py-2 sm:py-3
 
-        min-w-[100px]
+        min-w-[120px]
         rounded-full
 
         text-sm sm:text-base

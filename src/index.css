@@ -78,19 +78,19 @@
 }
 
 .animate-rope-main {
-  animation: ropeMain 6s ease-in-out infinite;
+  animation: ropeMain 4s ease-in-out infinite;
 }
 
 .animate-rope-gloss {
-  animation: ropeGloss 5s ease-in-out infinite;
+  animation: ropeGloss 4s ease-in-out infinite;
 }
 
 .animate-ring-flow {
-  animation: ringFlow 8s ease-in-out infinite;
+  animation: ringFlow 5s ease-in-out infinite;
 }
 
 .animate-pulse-glow {
-  animation: pulseGlow 4.5s ease-in-out infinite;
+  animation: pulseGlow 4s ease-in-out infinite;
 }
 
 @keyframes marquee {
@@ -105,5 +105,5 @@
 
 .animate-marquee {
   width: max-content;
-  animation: marquee 30s linear infinite;
+  animation: marquee 25s linear infinite;
 }

@@ -267,13 +267,13 @@ const Navbar = () => {
             <Link to="/login" className="w-full">
               <Button1
                 text="Login"
-                className="w-full bg-white text-neutral-700 hover:text-black font-semibold border border-neutral-300 py-3 rounded-full text-center shadow-sm text-sm transition block"
+                className="w-full bg-white text-neutral-700 hover:text-black font-semibold border border-neutral-300 rounded-md text-center shadow-sm text-sm transition block"
               />
             </Link>
             <Link to="/Signup" className="w-full">
               <Button1
                 text="Sign Up"
-                className="w-full bg-black text-white hover:bg-neutral-900 font-semibold py-3 rounded-full text-center shadow-sm text-sm transition block"
+                className="w-full bg-black text-white hover:bg-neutral-900 font-semibold rounded-md text-center shadow-sm text-sm transition block"
               />
             </Link>
           </div>
