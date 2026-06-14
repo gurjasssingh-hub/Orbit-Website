@@ -147,12 +147,12 @@ const App = () => {
 
         //Resources
 
-        <Route path="/Resourcespages/Blog" element={<Blog />} />
-        <Route path="/Resourcespages/Community" element={<Community />} />
-        <Route path="/Resourcespages/Documentation" element={<Documentation />} />
-        <Route path="/Resourcespages/Guides" element={<Guides />} />
-        <Route path="/Resourcespages/Helpcenter" element={<Helpcenter />} />
-        <Route path="/Resourcespages/Templates" element={<Templates />} />
+        <Route path="/Resourcespages/blog" element={<Blog />} />
+        <Route path="/Resourcespages/community" element={<Community />} />
+        <Route path="/Resourcespages/documentation" element={<Documentation />} />
+        <Route path="/Resourcespages/guides" element={<Guides />} />
+        <Route path="/Resourcespages/helpcenter" element={<Helpcenter />} />
+        <Route path="/Resourcespages/templates" element={<Templates />} />
 
 
         {/*HELP*/}
