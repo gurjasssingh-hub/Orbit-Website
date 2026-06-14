@@ -75,19 +75,19 @@ const footerColumns = [
     href: "/featurespages/Analytics"
   },
       { label: "Automation", desc: "Automate workflows instantly.",
-        href:"/featurespages/Automation"
+        href:"/Featurespages/automation"
        },
       { label: "Monitoring", desc: "Real-time logs and alerts.",
-        href:"/featurespages/Monitoring"
+        href:"/Featurespages/monitoring"
        },
       { label: "Security", desc: "Enterprise-grade protection.",
-        href:"/featurespages/Security"
+        href:"/Featurespages/security"
        },
       { label: "Collaboration", desc: "Work together with teams." ,
-        href:"/featurespages/Collaboration"
+        href:"/Featurespages/collaboration"
       },
       { label: "API", desc: "Developer-first API access.",
-        href:"/featurespages/API"
+        href:"/Featurespages/api"
        },
     ],
   },
@@ -95,22 +95,22 @@ const footerColumns = [
     title: "Resources",
     links: [
       { label: "Documentation", desc: "Learn the platform quickly.",
-        href:"/resourcespages/Documentation"
+        href:"/Resourcespages/documentation"
        },
       { label: "Guides", desc: "Step-by-step tutorials."
-        ,href:"/resourcespages/guides"
+        ,href:"/Resourcespages/guides"
        },
       { label: "Help Center", desc: "Support and troubleshooting.",
-        href:"/resourcespages/HelpCenter"
+        href:"/Resourcespages/HelpCenter"
        },
       { label: "Blog", desc: "News and product updates." ,
-        href:"/resourcespages/Blog"
+        href:"/Resourcespages/blog"
       },
       { label: "Templates", desc: "Ready-to-use starter kits." ,
-        href:"/resourcespages/Templates"
+        href:"/Resourcespages/templates"
       },
       { label: "Community", desc: "Connect with other developers." ,
-        href:"/resourcespages/Community"
+        href:"/Resourcespages/community"
       },
     ],
   },
@@ -162,9 +162,9 @@ export default function Footer() {
       className="relative overflow-hidden bg-white text-black"
       style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
     >
-      {/* ── Background Effects ── */}
+     
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        {/* Grid */}
+        
         <div
           className="absolute inset-0 opacity-[0.03]"
           style={{
@@ -173,26 +173,26 @@ export default function Footer() {
             backgroundSize: "48px 48px",
           }}
         />
-        {/* Grid fade to bottom */}
+       
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent" />
-        {/* Orb left */}
+       
         <div
           className="absolute -left-40 top-20 w-[520px] h-[520px] rounded-full opacity-[0.07]"
           style={{ background: "radial-gradient(circle, #7c3aed 0%, #4f46e5 50%, transparent 70%)", filter: "blur(60px)" }}
         />
-        {/* Orb right */}
+       
         <div
           className="absolute -right-32 top-40 w-[440px] h-[440px] rounded-full opacity-[0.06]"
           style={{ background: "radial-gradient(circle, #6366f1 0%, #8b5cf6 50%, transparent 70%)", filter: "blur(80px)" }}
         />
-        {/* Orb bottom */}
+       
         <div
           className="absolute left-1/2 -translate-x-1/2 bottom-0 w-[700px] h-[300px] opacity-[0.05]"
           style={{ background: "radial-gradient(ellipse, #7c3aed 0%, transparent 70%)", filter: "blur(60px)" }}
         />
       </div>
 
-      {/* ── Top Glow Border ── */}
+      
       <div
         className="absolute top-0 left-0 right-0 h-px"
         style={{
@@ -245,7 +245,7 @@ export default function Footer() {
                   <span className="text-sm font-medium">You're subscribed!</span>
                 </div>
               ) : (
-                <div className="flex gap-2.5 w-full sm:w-auto">
+                <div className="flex flex-col lg:flex-row  gap-2.5 w-full sm:w-auto">
                   <input
                     type="email"
                     value={email}
